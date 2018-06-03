@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">OkCupidChallenge</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username_placeholder">bklyn2356</string>
+    <string name="user_age_placeholder">24</string>
+    <string name="user_match_placeholder">86% Match</string>
+    <string name="user_location_placeholder">Brooklynaderoopalooza, NY</string>
+    <string name="view_divider">\u00b7</string>
+    <string name="search_appbar_title">Search</string>
+    <string name="network_error_message">Uh Oh! Something is wrong with the network.</string>
+    <string name="network_error_retry">Retry</string>
+    <string name="network_error_closeapp">Close App</string>
+
+</resources>

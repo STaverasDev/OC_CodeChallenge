@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="user_card_elevation">2dp</dimen>
+    <dimen name="user_card_margin">8dp</dimen>
+    <dimen name="user_img_dimen">150dp</dimen>
+    <dimen name="user_img_bottom_margin">10dp</dimen>
+    <dimen name="text_view_margin">3dp</dimen>
+    <dimen name="match_text_view_margin">8dp</dimen>
+    <dimen name="user_card_height">240dp</dimen>
+
+</resources>
