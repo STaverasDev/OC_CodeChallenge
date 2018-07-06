@@ -1,7 +1,6 @@
 package nyc.c4q.okcupidchallenge.ui.profilebinding
 
 import android.databinding.BindingAdapter
-import android.databinding.ObservableField
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso

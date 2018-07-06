@@ -53,12 +53,6 @@ class ProfileFragment : Fragment() {
         return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //profile_user_name.text = user.userName
-        //Picasso.get().load(user.photos.photoThumbnails.mediumThumbnail).into(profile_user_img)
-    }
-
     companion object {
         @JvmStatic
         fun newInstance(user: Bundle) =
