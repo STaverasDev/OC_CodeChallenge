@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightGray"
     android:gravity="center"
-    tools:context=".ui.SearchActivity">
+    tools:context=".ui.KSearchActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/user_rec_view"
@@ -17,6 +17,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:spanCount="2"
         tools:listitem="@layout/user" />
+
+    <FrameLayout
+        android:id="@+id/frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>
