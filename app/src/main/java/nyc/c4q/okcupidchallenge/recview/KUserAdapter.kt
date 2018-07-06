@@ -24,13 +24,12 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
         holder.bind(user)
         holder.setBackgroundColor(user.isLiked)
         holder.adapter = this
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KUserViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.user, parent, false)
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val userBinding: UserBinding = DataBindingUtil.inflate(inflater, R.layout.user, parent, false)
+        val view = userBinding.root
         return KUserViewHolder(view, userBinding)
     }
 
@@ -41,32 +40,22 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
 
     class KUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        val userImage = itemView.user_img
-        val username = itemView.user_name
-        val userLocation = itemView.user_location
-        val userMatch = itemView.user_match
         lateinit var mBinding: UserBinding
         lateinit var adapter: KUserAdapter
         lateinit var user: KUser
 
         constructor(itemview: View, binding: UserBinding) : this(itemview) {
-            binding.root
+
             mBinding = binding
         }
-
 
         fun bind(user: KUser) {
             this.user = user
             itemView.setOnClickListener(this)
-            val userItemViewModel: UserItemViewModel = UserItemViewModel(user)
+            val userItemViewModel = UserItemViewModel(user)
             mBinding.recUserVM = userItemViewModel
             userItemViewModel.setNewUser(user)
 
-            /*
-            userLocation.text = user.getAgeLocationForView()
-            userMatch.text = user.getMatchForView()
-            username.text = user.userName
-            Picasso.get().load(user.photos.photoThumbnails.mediumThumbnail).fit().into(userImage)*/
         }
 
         fun setLiveData(user: KUser) {

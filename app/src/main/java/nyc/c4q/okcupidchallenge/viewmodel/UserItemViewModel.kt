@@ -2,10 +2,11 @@ package nyc.c4q.okcupidchallenge.viewmodel
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.databinding.Observable
 import nyc.c4q.okcupidchallenge.model.KUser
 
 
-class UserItemViewModel(var user: KUser) : BaseObservable() {
+class UserItemViewModel(var user: KUser) : BaseObservable(),Observable {
 
 
     @Bindable

@@ -19,7 +19,6 @@ class KSearchViewModel(var service: KOkCupidService? = null, var userList: Mutab
     }
 
     fun initialize() {
-        Log.d("${this.javaClass.simpleName}","initialized")
         getUsers()
     }
 
