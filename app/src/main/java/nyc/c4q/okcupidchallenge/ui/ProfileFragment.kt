@@ -1,6 +1,7 @@
 package nyc.c4q.okcupidchallenge.ui
 
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 import nyc.c4q.okcupidchallenge.R
+import nyc.c4q.okcupidchallenge.databinding.FragmentProfileBinding
 import nyc.c4q.okcupidchallenge.model.KUser
+import nyc.c4q.okcupidchallenge.viewmodel.ProfileViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,21 +37,24 @@ class ProfileFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             userBundle = it.getBundle(USER)
+            val fragmentProfileBinding: FragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater)
+            user = userBundle?.get(SELECTED_USER_BUNDLE_KEY) as KUser
+            fragmentProfileBinding.userVM = ProfileViewModel(user)
+            rootView = fragmentProfileBinding.root
 
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(R.layout.fragment_profile, container, false)
-        user = userBundle?.get(SELECTED_USER_BUNDLE_KEY) as KUser
+
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profile_user_name.text = user.userName
-        Picasso.get().load(user.photos.photoThumbnails.mediumThumbnail).into(profile_user_img)
+        //profile_user_name.text = user.userName
+        //Picasso.get().load(user.photos.photoThumbnails.mediumThumbnail).into(profile_user_img)
     }
 
     companion object {
