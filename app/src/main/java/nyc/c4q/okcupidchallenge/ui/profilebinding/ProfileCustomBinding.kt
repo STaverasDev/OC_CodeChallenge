@@ -5,6 +5,6 @@ import android.databinding.ObservableField
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("profile:picassoImg")
+@BindingAdapter("android:picassoImg")
 fun setPicassoImg(view:ImageView, url:String){
     Picasso.get().load(url).into(view)}
