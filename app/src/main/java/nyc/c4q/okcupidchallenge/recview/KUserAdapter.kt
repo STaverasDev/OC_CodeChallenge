@@ -21,6 +21,7 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
     override fun onBindViewHolder(holder: KUserViewHolder, position: Int) {
         var user = userList[position]
         holder.bind(user)
+        holder.setBackgroundColor(user.isLiked)
         holder.adapter=this
 
     }

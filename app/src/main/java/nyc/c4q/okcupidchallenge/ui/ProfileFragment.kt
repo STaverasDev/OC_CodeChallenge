@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -27,6 +25,7 @@ private const val USER = "user"
  */
 class ProfileFragment : Fragment() {
 
+    val SELECTED_USER_BUNDLE_KEY = "selected_user"
     private var userBundle: Bundle? = null
     lateinit var rootView: View
     lateinit var user: KUser
@@ -42,7 +41,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_profile, container, false)
-        user = userBundle?.get("selected_user") as KUser
+        user = userBundle?.get(SELECTED_USER_BUNDLE_KEY) as KUser
         return rootView
     }
 
