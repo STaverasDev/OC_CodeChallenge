@@ -8,7 +8,7 @@ import nyc.c4q.okcupidchallenge.model.KUser
 
 class ProfileViewModel(var user: KUser) : BaseObservableViewModel() {
 
-    val username: ObservableField<String> = ObservableField()
+    val userName: ObservableField<String> = ObservableField()
     val userImg: ObservableField<String> = ObservableField()
 
     init {
@@ -16,7 +16,7 @@ class ProfileViewModel(var user: KUser) : BaseObservableViewModel() {
     }
 
     fun initialize() {
-        username.set(user.userName)
+        userName.set(user.userName)
         userImg.set(user.photos.photoThumbnails.mediumThumbnail)
     }
 

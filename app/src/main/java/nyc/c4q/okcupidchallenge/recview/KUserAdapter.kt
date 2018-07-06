@@ -7,12 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user.view.*
 import nyc.c4q.okcupidchallenge.R
 import nyc.c4q.okcupidchallenge.databinding.UserBinding
 import nyc.c4q.okcupidchallenge.model.KUser
-import nyc.c4q.okcupidchallenge.ui.ProfileFragment
+import nyc.c4q.okcupidchallenge.viewmodel.UserItemViewModel
 
 
 class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUserAdapter.KUserViewHolder>() {
@@ -30,9 +29,9 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KUserViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.user, parent, false)
-        val inflater:LayoutInflater = LayoutInflater.from(parent.context)
-        val userBinding: UserBinding = DataBindingUtil.inflate(inflater,R.id.user_rec_view,parent,false)
-        return KUserViewHolder(view,userBinding)
+        val inflater: LayoutInflater = LayoutInflater.from(parent.context)
+        val userBinding: UserBinding = DataBindingUtil.inflate(inflater, R.layout.user, parent, false)
+        return KUserViewHolder(view, userBinding)
     }
 
     override fun getItemCount(): Int {
@@ -40,27 +39,34 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
     }
 
 
-    class KUserViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview), View.OnClickListener {
+    class KUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        val userImage = itemview.user_img
-        val username = itemview.user_name
-        val userLocation = itemview.user_location
-        val userMatch = itemview.user_match
+        val userImage = itemView.user_img
+        val username = itemView.user_name
+        val userLocation = itemView.user_location
+        val userMatch = itemView.user_match
+        lateinit var mBinding: UserBinding
         lateinit var adapter: KUserAdapter
         lateinit var user: KUser
 
         constructor(itemview: View, binding: UserBinding) : this(itemview) {
             binding.root
+            mBinding = binding
         }
 
 
         fun bind(user: KUser) {
             this.user = user
             itemView.setOnClickListener(this)
+            val userItemViewModel: UserItemViewModel = UserItemViewModel(user)
+            mBinding.recUserVM = userItemViewModel
+            userItemViewModel.setNewUser(user)
+
+            /*
             userLocation.text = user.getAgeLocationForView()
             userMatch.text = user.getMatchForView()
             username.text = user.userName
-            Picasso.get().load(user.photos.photoThumbnails.mediumThumbnail).fit().into(userImage)
+            Picasso.get().load(user.photos.photoThumbnails.mediumThumbnail).fit().into(userImage)*/
         }
 
         fun setLiveData(user: KUser) {
