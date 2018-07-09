@@ -6,10 +6,7 @@ import retrofit2.http.GET
 
 interface KOKCupidAPI {
 
-    /*@GET("/matchSample.json")
-    fun getUsers(): Call<KAPIResponse>*/
-
     @GET("/matchSample.json")
-    fun getUsers():Call<KAPIResponse>
+    fun getUsers(): Call<KAPIResponse>
 
 }

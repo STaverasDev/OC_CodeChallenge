@@ -3,7 +3,6 @@ package nyc.c4q.okcupidchallenge.viewmodel
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.databinding.Observable
-import nyc.c4q.okcupidchallenge.R
 import nyc.c4q.okcupidchallenge.model.KUser
 
 
@@ -37,16 +36,14 @@ class UserItemViewModel(var user: KUser) : BaseObservable(), Observable {
     }
 
     @Bindable
-    private fun getIsLiked(): Boolean {
+    fun getIsLiked(): Boolean {
         return user.isLiked
     }
 
     @Bindable
-    fun getLikedIndicatorColor(): Int {
-        if (getIsLiked()) {
-            return R.color.likedColor
-        }
-        return R.color.unlikedColor
+    fun setIsLiked(liked: Boolean) {
+        user.isLiked = liked
+        notifyChange()
     }
 
 

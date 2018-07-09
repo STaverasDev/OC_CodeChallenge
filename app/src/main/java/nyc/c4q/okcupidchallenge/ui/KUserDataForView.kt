@@ -3,9 +3,9 @@ package nyc.c4q.okcupidchallenge.ui
 class KUserDataForView() {
 
     companion object {
-        val AGE_LOCATION_DIVIDER: String = " \u00b7 "
-        val MATCH_PERCENTAGE: String = "% Match"
-        val CITY_STATE_DIVIDER: String = ", "
+        private const val AGE_LOCATION_DIVIDER: String = " \u00b7 "
+        private const val MATCH_PERCENTAGE: String = "% Match"
+        private const val CITY_STATE_DIVIDER: String = ", "
 
         fun buildAgeLocationStringForView(age: Int, locationAsCityState: String): String {
             val ageLocation = StringBuilder()
@@ -32,10 +32,8 @@ class KUserDataForView() {
 
         fun convertMatchToPercentage(responseMatchValue: Int): Int {
             val responseDouble = responseMatchValue.toDouble()
-            val percentageValue = Math.round((responseDouble / 100.0).toDouble())
-            val finalValue = percentageValue.toInt()
-            return finalValue
-
+            val percentageValue = Math.round((responseDouble / 100.0))
+            return percentageValue.toInt()
         }
     }
 

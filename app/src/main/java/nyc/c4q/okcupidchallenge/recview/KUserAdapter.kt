@@ -17,11 +17,9 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
 
     var userSelectedLiveData: MutableLiveData<KUser> = MutableLiveData()
 
-
     override fun onBindViewHolder(holder: KUserViewHolder, position: Int) {
         var user = userList[position]
         holder.bind(user)
-        //holder.setBackgroundColor(user.isLiked)
         holder.adapter = this
     }
 
@@ -42,16 +40,17 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
         lateinit var mBinding: UserBinding
         lateinit var adapter: KUserAdapter
         lateinit var user: KUser
+        lateinit var userItemViewModel: UserItemViewModel
+
 
         constructor(itemView: View, binding: UserBinding) : this(itemView) {
-
             mBinding = binding
         }
 
         fun bind(user: KUser) {
             this.user = user
             itemView.setOnClickListener(this)
-            val userItemViewModel = UserItemViewModel(user)
+            userItemViewModel = UserItemViewModel(user)
             mBinding.recUserVM = userItemViewModel
             userItemViewModel.setNewUser(user)
 
@@ -64,17 +63,9 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
 
         override fun onClick(p0: View?) {
             setLiveData(user)
-            setBackgroundColor(!user.isLiked)
             user.isLiked = !user.isLiked
+            userItemViewModel.setIsLiked(user.isLiked)
         }
-
-
-        fun setBackgroundColor(isLiked: Boolean) {
-            val colorResource: Int = if (isLiked) R.color.likedColor else R.color.unlikedColor
-            val context = itemView.context
-            itemView.setBackgroundColor(ContextCompat.getColor(context, colorResource))
-        }
-
 
     }
 

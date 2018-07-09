@@ -16,7 +16,7 @@ class KOkCupidService {
 
     }
 
-    fun getOkcupidAPI(): KOKCupidAPI {
+    fun getOkCupidAPI(): KOKCupidAPI {
         return retrofit.create(KOKCupidAPI::class.java)
     }
 

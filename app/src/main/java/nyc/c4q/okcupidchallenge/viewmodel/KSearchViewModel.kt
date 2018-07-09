@@ -2,7 +2,6 @@ package nyc.c4q.okcupidchallenge.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import nyc.c4q.okcupidchallenge.api.KOkCupidService
 import nyc.c4q.okcupidchallenge.model.KAPIResponse
 import nyc.c4q.okcupidchallenge.model.KUser
@@ -24,7 +23,7 @@ class KSearchViewModel(var service: KOkCupidService? = null, var userList: Mutab
 
 
     fun getUsers() {
-        val call = service?.getOkcupidAPI()?.getUsers()
+        val call = service?.getOkCupidAPI()?.getUsers()
 
         call?.enqueue(object : Callback<KAPIResponse> {
 
