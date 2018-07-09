@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.user.view.*
 import nyc.c4q.okcupidchallenge.R
 import nyc.c4q.okcupidchallenge.databinding.UserBinding
 import nyc.c4q.okcupidchallenge.model.KUser
@@ -22,7 +21,7 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
     override fun onBindViewHolder(holder: KUserViewHolder, position: Int) {
         var user = userList[position]
         holder.bind(user)
-        holder.setBackgroundColor(user.isLiked)
+        //holder.setBackgroundColor(user.isLiked)
         holder.adapter = this
     }
 
@@ -44,7 +43,7 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
         lateinit var adapter: KUserAdapter
         lateinit var user: KUser
 
-        constructor(itemview: View, binding: UserBinding) : this(itemview) {
+        constructor(itemView: View, binding: UserBinding) : this(itemView) {
 
             mBinding = binding
         }
@@ -58,7 +57,7 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
 
         }
 
-        fun setLiveData(user: KUser) {
+        private fun setLiveData(user: KUser) {
             adapter.userSelectedLiveData.postValue(user)
 
         }

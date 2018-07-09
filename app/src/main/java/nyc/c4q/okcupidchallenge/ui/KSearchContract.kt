@@ -1,4 +1,4 @@
-package nyc.c4q.okcupidchallenge.viewmodel
+package nyc.c4q.okcupidchallenge.ui
 
 import nyc.c4q.okcupidchallenge.model.KUser
 

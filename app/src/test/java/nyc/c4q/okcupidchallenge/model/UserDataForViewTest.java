@@ -2,6 +2,7 @@ package nyc.c4q.okcupidchallenge.model;
 
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class UserDataForViewTest {

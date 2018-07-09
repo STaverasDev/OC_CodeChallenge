@@ -3,7 +3,10 @@ package nyc.c4q.okcupidchallenge.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import nyc.c4q.okcupidchallenge.model.UserDataForView.*
+import nyc.c4q.okcupidchallenge.ui.KUserDataForView.Companion.buildAgeLocationStringForView
+import nyc.c4q.okcupidchallenge.ui.KUserDataForView.Companion.buildCityStateStringForView
+import nyc.c4q.okcupidchallenge.ui.KUserDataForView.Companion.buildMatchStringForView
+import nyc.c4q.okcupidchallenge.ui.KUserDataForView.Companion.convertMatchToPercentage
 
 @Parcelize
 data class KUser(

@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.Parcelable
 import android.os.PersistableBundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -12,13 +11,10 @@ import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_search.*
 import nyc.c4q.okcupidchallenge.R
-import nyc.c4q.okcupidchallenge.api.KOkCupidService
 import nyc.c4q.okcupidchallenge.model.KUser
-import nyc.c4q.okcupidchallenge.viewmodel.KSearchContract
 import nyc.c4q.okcupidchallenge.viewmodel.KSearchViewModel
 import nyc.c4q.okcupidchallenge.recview.KUserAdapter
 import nyc.c4q.okcupidchallenge.viewmodel.SearchViewModelProvider
-import java.util.*
 
 class KSearchActivity : AppCompatActivity(), KSearchContract.View {
 
