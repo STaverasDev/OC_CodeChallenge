@@ -18,9 +18,6 @@ import nyc.c4q.okcupidchallenge.viewmodel.SearchViewModelProvider
 
 class KSearchActivity : AppCompatActivity(), KSearchContract.View {
 
-    private val HORIZONTAL_SPAN = 3
-    private val PROFILE_FRAG_NAME = "profile_frag"
-    private val SELECTED_USER_BUNDLE_KEY = "selected_user"
     private var searchViewModelProvider: SearchViewModelProvider = SearchViewModelProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +72,12 @@ class KSearchActivity : AppCompatActivity(), KSearchContract.View {
         })
         val dialog = builder.create()
         dialog.show()
+    }
+
+    companion object {
+        private const val HORIZONTAL_SPAN = 3
+        private const val PROFILE_FRAG_NAME = "profile_frag"
+        private const val SELECTED_USER_BUNDLE_KEY = "selected_user"
     }
 
 

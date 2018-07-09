@@ -20,14 +20,13 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
     override fun onBindViewHolder(holder: KUserViewHolder, position: Int) {
         var user = userList[position]
         holder.bind(user)
-        holder.adapter = this
+        holder.userSelectedLiveData = userSelectedLiveData
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KUserViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val userBinding: UserBinding = DataBindingUtil.inflate(inflater, R.layout.user, parent, false)
-        val view = userBinding.root
-        return KUserViewHolder(view, userBinding)
+        return KUserViewHolder(userBinding)
     }
 
     override fun getItemCount(): Int {
@@ -35,36 +34,23 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
     }
 
 
-    class KUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class KUserViewHolder(val binding: UserBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-        private lateinit var mBinding: UserBinding
-        lateinit var adapter: KUserAdapter
-        lateinit var user: KUser
+        var userSelectedLiveData: MutableLiveData<KUser> = MutableLiveData()
         private lateinit var userItemViewModel: UserItemViewModel
 
-
-        constructor(itemView: View, binding: UserBinding) : this(itemView) {
-            mBinding = binding
-        }
-
         fun bind(user: KUser) {
-            this.user = user
-            itemView.setOnClickListener(this)
             userItemViewModel = UserItemViewModel(user)
-            mBinding.recUserVM = userItemViewModel
+            itemView.setOnClickListener(this)
+            binding.recUserVM = userItemViewModel
             userItemViewModel.setNewUser(user)
 
         }
 
-        private fun setLiveData(user: KUser) {
-            adapter.userSelectedLiveData.postValue(user)
-
-        }
-
         override fun onClick(p0: View?) {
-            setLiveData(user)
-            user.isLiked = !user.isLiked
-            userItemViewModel.setIsLiked(user.isLiked)
+            userSelectedLiveData.postValue(userItemViewModel.user)
+            userItemViewModel.user.isLiked = !userItemViewModel.user.isLiked
+            userItemViewModel.setIsLiked(userItemViewModel.user.isLiked)
         }
 
     }
