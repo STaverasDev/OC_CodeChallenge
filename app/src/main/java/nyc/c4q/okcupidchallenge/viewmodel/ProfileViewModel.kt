@@ -15,7 +15,7 @@ class ProfileViewModel(var user: KUser) : BaseObservableViewModel() {
         initialize()
     }
 
-    fun initialize() {
+    private fun initialize() {
         userName.set(user.userName)
         userImg.set(user.photos.photoThumbnails.mediumThumbnail)
     }

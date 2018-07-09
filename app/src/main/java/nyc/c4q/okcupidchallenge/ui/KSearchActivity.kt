@@ -18,35 +18,24 @@ import nyc.c4q.okcupidchallenge.viewmodel.SearchViewModelProvider
 
 class KSearchActivity : AppCompatActivity(), KSearchContract.View {
 
-    val HORIZONTAL_SPAN = 3
-    val USER_LIST_SAVED_TO_BUNDLE = "user_list"
-    val PROFILE_FRAG_NAME = "profile_frag"
-    val SELECTED_USER_BUNDLE_KEY = "selected_user"
-
-    //lateinit var viewModel: KSearchViewModel
-    var searchViewModelProvider: SearchViewModelProvider = SearchViewModelProvider()
+    private val HORIZONTAL_SPAN = 3
+    private val PROFILE_FRAG_NAME = "profile_frag"
+    private val SELECTED_USER_BUNDLE_KEY = "selected_user"
+    private var searchViewModelProvider: SearchViewModelProvider = SearchViewModelProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         setAppBarTitle()
-
         val viewModel = ViewModelProviders.of(this, searchViewModelProvider).get(KSearchViewModel::class.java)
-
         viewModel.userLiveData.observe(this, android.arch.lifecycle.Observer { list ->
-            Log.d("${this.javaClass.simpleName}", "observing list")
-
             if (list != null) {
-                Log.d("${this.javaClass.simpleName}", "received list")
                 showUserRecyclerView(list)
             }
-
         })
-
     }
 
-    fun startProfileFragment(user: Bundle) {
-        Log.d("${this.javaClass.simpleName}", "starting frag")
+    private fun startProfileFragment(user: Bundle) {
         val transaction = supportFragmentManager.beginTransaction()
         val profileFragment = ProfileFragment.newInstance(user)
         transaction.add(R.id.frag_container, profileFragment).addToBackStack(PROFILE_FRAG_NAME)
@@ -66,11 +55,11 @@ class KSearchActivity : AppCompatActivity(), KSearchContract.View {
         observeLiveData(adapter)
     }
 
-    fun observeLiveData(adapter: KUserAdapter) {
+    private fun observeLiveData(adapter: KUserAdapter) {
         adapter.userSelectedLiveData.observe(this, android.arch.lifecycle.Observer { user -> startProfileFragment(createUserBundle(user)) })
     }
 
-    fun createUserBundle(user: KUser?): Bundle {
+    private fun createUserBundle(user: KUser?): Bundle {
         val bundle = Bundle()
         bundle.putParcelable(SELECTED_USER_BUNDLE_KEY, user)
         return bundle
@@ -80,18 +69,12 @@ class KSearchActivity : AppCompatActivity(), KSearchContract.View {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(R.string.network_error_message)
         builder.setPositiveButton(R.string.network_error_retry, DialogInterface.OnClickListener { dialogInterface: DialogInterface, i: Int ->
-            //viewModel.initialize()
         })
         builder.setNegativeButton(R.string.network_error_retry, DialogInterface.OnClickListener { dialogInterface: DialogInterface, i: Int ->
             finish()
         })
         val dialog = builder.create()
         dialog.show()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        //outState?.putParcelableArrayList(USER_LIST_SAVED_TO_BUNDLE, viewModel.userLiveData as ArrayList<out Parcelable>)
-        super.onSaveInstanceState(outState, outPersistentState)
     }
 
 

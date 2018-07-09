@@ -37,10 +37,10 @@ class KUserAdapter(var userList: MutableList<KUser>) : RecyclerView.Adapter<KUse
 
     class KUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        lateinit var mBinding: UserBinding
+        private lateinit var mBinding: UserBinding
         lateinit var adapter: KUserAdapter
         lateinit var user: KUser
-        lateinit var userItemViewModel: UserItemViewModel
+        private lateinit var userItemViewModel: UserItemViewModel
 
 
         constructor(itemView: View, binding: UserBinding) : this(itemView) {

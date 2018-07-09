@@ -17,12 +17,12 @@ class KSearchViewModel(var service: KOkCupidService? = null, var userList: Mutab
         initialize()
     }
 
-    fun initialize() {
+    private fun initialize() {
         getUsers()
     }
 
 
-    fun getUsers() {
+    private fun getUsers() {
         val call = service?.getOkCupidAPI()?.getUsers()
 
         call?.enqueue(object : Callback<KAPIResponse> {
@@ -37,8 +37,4 @@ class KSearchViewModel(var service: KOkCupidService? = null, var userList: Mutab
         })
     }
 
-
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

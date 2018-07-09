@@ -5,12 +5,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class KOkCupidService {
 
-    private val BASE_STRING: String = "https://www.okcupid.com"
-    val retrofit: Retrofit
+    private val _baseString = "https://www.okcupid.com"
+    private val retrofit: Retrofit
 
     init {
         retrofit = Retrofit.Builder()
-                .baseUrl(BASE_STRING)
+                .baseUrl(_baseString)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
